@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+    --font-main: 'Roboto', 'Avenir', sans-serif;
+    --color-black: #1a1a1a;
+    --color-white: #ffffff;
+    --color-gray-light: #f5f5f5;
+    --color-gray-text: #888888;
+    --color-border: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   2. HEADER
+   ========================================= */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-left { display: flex; align-items: center; gap: 30px; }
+
+.menu-btn {
+    background-color: var(--color-black);
+    border: none;
+    width: 50px; height: 50px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+}
+
+.menu-btn span { width: 20px; height: 2px; background-color: var(--color-white); }
+
+.main-nav { display: flex; gap: 25px; font-weight: 500; font-size: 14px; }
+
+.header-right { display: flex; align-items: center; gap: 20px; font-weight: 500; font-size: 14px; }
+
+/* =========================================
+   3. BARRE DE RECHERCHE
+   ========================================= */
+.search-section { display: flex; justify-content: space-between; align-items: center; padding: 30px 40px; }
+
+.search-input-group { display: flex; align-items: center; flex-grow: 1; max-width: 700px; border-bottom: 2px solid var(--color-black); padding-bottom: 10px; }
+
+.search-input { border: none; outline: none; font-size: 24px; font-weight: 500; width: 100%; }
+
+.search-sort { display: flex; gap: 30px; color: var(--color-gray-text); font-size: 14px; }
+.search-sort select { border: none; font-size: 18px; font-weight: 500; color: var(--color-black); }
+
+/* =========================================
+   4. LAYOUT (LA GRILLE PRINCIPALE)
+   ========================================= */
+.main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar 250px / Produits le reste */
+    gap: 40px;
+    padding: 20px 40px;
+}
+
+/* Sidebar */
+.sidebar h3 { font-size: 12px; color: var(--color-gray-text); margin-bottom: 20px; }
+.sidebar details { border-bottom: 1px solid var(--color-border); padding: 15px 0; cursor: pointer; }
+.sidebar summary { font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; }
+
+/* LA GRILLE DE PRODUITS (3 colonnes sur Desktop) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+    gap: 30px;
+}
+
+/* Carte produit */
+.product-card { display: flex; flex-direction: column; }
+.product-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 15px; }
+.product-info { display: flex; justify-content: space-between; font-weight: 500; }
+.product-category { font-size: 11px; color: var(--color-gray-text); margin-bottom: 10px; }
+.product-footer { display: flex; justify-content: space-between; align-items: center; }
+
+/* =========================================
+   5. RESPONSIVE (MOBILE / TABLETTE)
+   ========================================= */
+@media (max-width: 1024px) {
+    /* Sur tablette, on passe à 2 colonnes */
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    /* Sur mobile, la sidebar passe au-dessus et on met 1 colonne */
+    .main-content {
+        grid-template-columns: 1fr; /* Une seule colonne pour tout */
+    }
+    .product-grid { grid-template-columns: 1fr; }
+    .main-header { padding: 15px 20px; }
+    .search-section { padding: 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .main-content { padding: 20px; }
+}
